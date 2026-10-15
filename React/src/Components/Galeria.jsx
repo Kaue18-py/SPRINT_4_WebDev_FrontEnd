@@ -1,18 +1,12 @@
 import SectionHeader from "./SectionHeader";
-
-// As imagens ficam em public/img (veja as instruções de renomear os arquivos)
 const telas = [
-    { src: "/img/tela-inicial.jpeg", alt: "Tela inicial do app JOVI" },
-    { src: "/img/forms-inteligente.jpeg", alt: "Tela do formulário inteligente" },
-    { src: "/img/camera-modo-estudante.jpeg", alt: "Tela do modo estudante" },
-    {
-        src: "/img/organizacao-por-materias.jpeg",
-        alt: "Tela de organização por matérias",
-    },
-    { src: "/img/novo-layout-camera.jpeg", alt: "Tela do novo layout" },
-    { src: "/img/galeria-nova.jpeg", alt: "Tela da galeria de fotos" },
+    { src: "/imagens/Tela Inicial JOVI.jpeg", alt: "Tela inicial do app JOVI" },
+    { src: "/imagens/Foto Forms Inteligente JOVI.jpeg", alt: "Tela do formulário inteligente" },
+    { src: "/imagens/Câmera no Modo Estudante JOVI.jpeg", alt: "Tela do modo estudante" },
+    { src: "/imagens/Organização por matérias JOVI.jpeg", alt: "Tela de organização por matérias" },
+    { src: "/imagens/Novo Layout Câmera JOVI.jpeg", alt: "Tela do novo layout" },
+    { src: "/imagens/Galeria nova JOVI.jpeg", alt: "Tela da galeria de fotos" },
 ];
-
 export default function Galeria() {
     return (
         <section id="galeria" className="px-4 py-10 md:px-5 md:py-[60px]">

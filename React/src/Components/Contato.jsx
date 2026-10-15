@@ -16,7 +16,6 @@ export default function Contato() {
 
     function handleSubmit(e) {
         e.preventDefault();
-        // Aqui você poderia enviar os dados para uma API
         console.log("Mensagem:", form);
         setEnviado(true);
         setForm({ nome: "", email: "", mensagem: "" });
