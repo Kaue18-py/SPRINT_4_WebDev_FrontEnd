@@ -1,56 +1,61 @@
-# JOVI — Modo Estudante e Formulário Inteligente
+# JOVI - Modo Estudante e Formulário Inteligente
 
-Evolução da landing page da Sprint 03 para a Sprint 04 (Front-End Design + Web Development — FIAP).
-O projeto apresenta a solução da Challenge — um **Modo Estudante** para a câmera, que organiza as fotos por matéria, e um **Formulário Inteligente** que adapta a câmera ao perfil do usuário — e agora traz também uma **Área do Estudante** com login, que simula o Modo Estudante funcionando.
+Projeto da Sprint 04 de Front-End Design e Web Development (FIAP), feito a partir da landing page que entregamos na Sprint 03.
 
-🔗 **Deploy na Vercel:** _cole aqui o link depois do deploy_
-🔗 **Repositório:** https://github.com/Kaue18-py/SPRINT_4_WebDev_FrontEnd
+A nossa solução para a Challenge tem duas partes: o Modo Estudante, que organiza as fotos da câmera por matéria, e o Formulário Inteligente, que adapta a câmera ao perfil de quem usa. Nesta sprint adicionamos também uma Área do Estudante com login, que simula o Modo Estudante funcionando.
 
----
+Deploy na Vercel: _cole aqui o link depois do deploy_
 
-## 🛠️ Tecnologias utilizadas
+Repositório: https://github.com/Kaue18-py/SPRINT_4_WebDev_FrontEnd
 
-| Tecnologia | Uso no projeto |
-| --- | --- |
-| **React 19** | Componentização, props, hooks nativos e hooks customizados |
-| **Vite** | Ambiente de desenvolvimento e build |
-| **React Router (react-router-dom)** | Rotas públicas, rotas privadas e página 404 |
-| **Tailwind CSS 4** | Toda a estilização e a responsividade (Desktop, Tablet e Mobile) |
-| **API mockada (JSON + fetch)** | Usuários, matérias e fotos consumidos com `fetch` |
-| **ESLint** | Padronização do código |
-| **Git + Vercel** | Versionamento e deploy |
+## Tecnologias
 
----
+- React 19
+- Vite
+- React Router (react-router-dom)
+- Tailwind CSS 4
+- API mockada com arquivos JSON e fetch
+- ESLint
+- Git e Vercel
 
-## ✅ Requisitos atendidos
+## O que foi feito
 
-- **Componentização e props:** a página é dividida em componentes reutilizáveis (`SectionHeader`, `Botao`, `CampoFormulario`, `FotoCard`, `FiltroMaterias`…) que recebem dados por props.
-- **Rotas públicas e privadas:**
-  | Rota | Tipo | Página |
-  | --- | --- | --- |
-  | `/` | Pública | Landing page (Solução, Público-Alvo, Galeria, Equipe, Contato) |
-  | `/login` | Pública | Login |
-  | `/area-do-estudante` | **Privada** | Simulação do Modo Estudante (só entra quem está logado) |
-  | `*` | Pública | Página 404 |
-- **Hooks nativos:** `useState`, `useEffect`, `useContext`, `useMemo`, `useCallback`.
-- **Hooks customizados** (pasta `src/hooks`), separando a lógica da parte visual:
-  | Hook | O que faz |
-  | --- | --- |
-  | `useAuth` | Dá acesso ao usuário logado, login e logout (via Context API) |
-  | `useFetch` | Consome a API com estados de carregamento, erro e "tentar novamente" |
-  | `useForm` | Valores, validação, envio e erros dos formulários (Login e Contato) |
-  | `useModoEstudante` | Toda a lógica da Área do Estudante: busca, filtro por matéria, pesquisa e favoritos |
-  | `useLocalStorage` | `useState` que salva no navegador (sessão e favoritos) |
-  | `useToggle` | Abre e fecha o menu mobile |
-  | `useScrollToHash` | Rola até a seção certa ao clicar nos links do menu (`/#contato` etc.) |
-- **Consumo de API mockada:** os dados ficam em `React/public/api/*.json` e são buscados com `fetch` pela camada `src/services/api.js`, com um atraso simulado de servidor.
-- **Tailwind CSS e responsividade:** layout testado em Desktop, Tablet e Mobile.
+### Componentes e props
 
----
+A página foi dividida em componentes que recebem os dados por props, como `SectionHeader`, `Botao`, `CampoFormulario`, `FotoCard` e `FiltroMaterias`.
 
-## 📦 Como instalar as dependências
+### Rotas
 
-Pré-requisito: [Node.js](https://nodejs.org/) 20 ou superior.
+- `/` (pública): landing page com Solução, Público-Alvo, Galeria, Equipe e Contato
+- `/login` (pública): tela de login
+- `/area-do-estudante` (privada): simulação do Modo Estudante, só abre com o usuário logado
+- `*` (pública): página 404
+
+### Hooks
+
+Usamos os hooks do React `useState`, `useEffect`, `useContext`, `useMemo` e `useCallback`.
+
+Também criamos hooks próprios na pasta `src/hooks` para deixar a lógica separada das telas:
+
+- `useAuth`: acesso ao usuário logado, login e logout (usa Context API)
+- `useFetch`: busca os dados da API e controla carregamento, erro e o botão de tentar de novo
+- `useForm`: valores, validação e envio dos formulários de Login e Contato
+- `useModoEstudante`: lógica da Área do Estudante (busca, filtro por matéria, pesquisa e favoritos)
+- `useLocalStorage`: funciona como o `useState`, mas salva no navegador (usado na sessão e nos favoritos)
+- `useToggle`: abre e fecha o menu no celular
+- `useScrollToHash`: rola até a seção certa quando clica nos links do menu, como `/#contato`
+
+### API
+
+Os dados ficam em `React/public/api/` (`usuarios.json`, `materias.json` e `fotos.json`) e são buscados com `fetch` pelo arquivo `src/services/api.js`. Colocamos um pequeno atraso nas respostas para parecer um servidor de verdade.
+
+### Responsividade
+
+Toda a estilização foi feita com Tailwind e o layout foi testado no computador, no tablet e no celular.
+
+## Como instalar
+
+É preciso ter o Node.js 20 ou mais recente.
 
 ```bash
 git clone https://github.com/Kaue18-py/SPRINT_4_WebDev_FrontEnd.git
@@ -58,53 +63,49 @@ cd SPRINT_4_WebDev_FrontEnd/React
 npm install
 ```
 
-> Todo o projeto React fica dentro da pasta **`React`**. Os comandos `npm` devem ser executados lá dentro.
+O projeto React fica dentro da pasta `React`, então os comandos do npm precisam ser rodados lá.
 
-## ▶️ Como executar o projeto
+## Como rodar
 
 ```bash
 npm run dev
 ```
 
-Abra no navegador o endereço mostrado no terminal (normalmente http://localhost:5173).
+Depois é só abrir o endereço que aparece no terminal (normalmente http://localhost:5173).
 
 Outros comandos:
 
 ```bash
-npm run build     # gera a versão de produção na pasta dist
-npm run preview   # roda a versão de produção localmente
-npm run lint      # verifica o código com o ESLint
+npm run build
+npm run preview
+npm run lint
 ```
 
-## 🖥️ Back-end
+`build` gera a versão final na pasta `dist`, `preview` roda essa versão localmente e `lint` verifica o código com o ESLint.
 
-O projeto **não tem back-end próprio** e não é preciso subir nenhum servidor além do `npm run dev`.
-A API é mockada: os arquivos `usuarios.json`, `materias.json` e `fotos.json` ficam em `React/public/api/` e são servidos pelo próprio Vite (e pela Vercel no deploy).
+## Back-end
 
-## 🔐 Usuários e senhas para teste
+O projeto não tem back-end próprio, então não precisa subir nenhum servidor além do `npm run dev`. Os arquivos JSON da API ficam na pasta `public` e são servidos pelo próprio Vite (e pela Vercel no deploy).
 
-| E-mail | Senha |
-| --- | --- |
-| `estudante@jovi.com` | `jovi123` |
-| `professor@fiap.com.br` | `fiap2026` |
+## Usuários para teste
 
-Como testar a rota privada:
-1. Acesse `/area-do-estudante` sem estar logado → você é redirecionado para `/login`.
-2. Entre com um dos usuários acima → você volta para a Área do Estudante.
-3. Filtre as fotos por matéria, pesquise e favorite (os favoritos ficam salvos no navegador).
-4. Clique em **Sair** no menu para encerrar a sessão.
+- E-mail: `estudante@jovi.com` / Senha: `jovi123`
+- E-mail: `professor@fiap.com.br` / Senha: `fiap2026`
 
-> A autenticação é apenas uma simulação para fins acadêmicos: em um sistema real, a senha seria verificada no back-end.
+Para testar a rota privada:
 
----
+1. Acesse `/area-do-estudante` sem estar logado. O site manda para a tela de login.
+2. Entre com um dos usuários acima. Depois do login você volta para a Área do Estudante.
+3. Filtre as fotos por matéria, pesquise e marque as favoritas (elas ficam salvas no navegador).
+4. Clique em Sair no menu para sair da conta.
 
-## 🤖 Uso de Inteligência Artificial
+O login é só uma simulação para o trabalho. Num sistema de verdade a senha seria conferida no back-end.
 
-Utilizamos o Claude (IA da Anthropic) como apoio na evolução do projeto da Sprint 03 para a Sprint 04. A IA foi usada para revisar o código existente e comparar com os requisitos da entrega, sugerir e implementar a estrutura de rotas públicas e privadas com React Router, criar os hooks customizados (`useAuth`, `useFetch`, `useForm`, `useModoEstudante`, `useLocalStorage`, `useToggle` e `useScrollToHash`), montar a API mockada da Área do Estudante e escrever a primeira versão deste README. Todo o código gerado foi revisado, testado e ajustado pela equipe, e o conteúdo da solução (Modo Estudante, Formulário Inteligente e Novo Layout) foi definido pelo grupo.
+## Uso de Inteligência Artificial
 
----
+Usamos o Claude, da Anthropic, como apoio para passar o projeto da Sprint 03 para a Sprint 04. Ele ajudou a revisar o código que já tínhamos e comparar com os requisitos da entrega, montar as rotas públicas e privadas com React Router, criar os hooks customizados, montar a API mockada da Área do Estudante e escrever a primeira versão deste README. O grupo revisou, testou e ajustou todo o código, e a ideia da solução (Modo Estudante, Formulário Inteligente e Novo Layout) foi definida por nós.
 
-## 🗂️ Estrutura do projeto
+## Estrutura de pastas
 
 ```
 SPRINT_4_WebDev_FrontEnd/
@@ -112,30 +113,41 @@ SPRINT_4_WebDev_FrontEnd/
 ├── README.md
 └── React/
     ├── public/
-    │   ├── api/              # API mockada (usuarios, materias, fotos)
-    │   └── imagens/          # telas do app usadas na Galeria
+    │   ├── api/
+    │   └── imagens/
     ├── src/
-    │   ├── Components/       # componentes visuais reutilizáveis
-    │   ├── contexts/         # AuthContext + AuthProvider (sessão do usuário)
-    │   ├── hooks/            # hooks customizados (lógica separada da tela)
-    │   ├── pages/            # Home, Login, AreaEstudante, NotFound
-    │   ├── services/api.js   # chamadas à API
-    │   ├── App.jsx           # definição das rotas
+    │   ├── Components/
+    │   ├── contexts/
+    │   ├── hooks/
+    │   ├── pages/
+    │   ├── services/api.js
+    │   ├── App.jsx
     │   ├── main.jsx
-    │   └── index.css         # Tailwind + cores da marca
-    ├── vercel.json           # faz as rotas do React funcionarem na Vercel
+    │   └── index.css
+    ├── vercel.json
     └── package.json
 ```
 
-## 🚀 Deploy na Vercel
+- `public/api`: arquivos JSON da API (usuários, matérias e fotos)
+- `public/imagens`: telas do app usadas na Galeria
+- `src/Components`: componentes da página
+- `src/contexts`: contexto de login (AuthContext e AuthProvider)
+- `src/hooks`: hooks customizados
+- `src/pages`: Home, Login, AreaEstudante e NotFound
+- `src/services/api.js`: funções que buscam os dados da API
+- `src/App.jsx`: rotas do site
+- `src/index.css`: Tailwind e as cores da marca
+- `vercel.json`: configuração para as rotas funcionarem na Vercel
 
-1. Em [vercel.com](https://vercel.com), clique em **Add New → Project** e importe este repositório.
-2. Em **Root Directory**, selecione a pasta **`React`**.
-3. Framework Preset: **Vite** (detectado automaticamente). Build: `npm run build`, Output: `dist`.
-4. Clique em **Deploy** e cole o link gerado no topo deste README.
+## Deploy na Vercel
 
-O arquivo `vercel.json` redireciona todas as rotas para o `index.html`; sem ele, recarregar a página em `/login` ou `/area-do-estudante` daria erro 404 na Vercel.
+1. No site da Vercel, clique em Add New, depois em Project, e importe este repositório.
+2. Em Root Directory, escolha a pasta `React`.
+3. O Framework Preset deve ser Vite (ele detecta sozinho). O comando de build é `npm run build` e a pasta de saída é `dist`.
+4. Clique em Deploy e cole o link gerado no começo deste README.
 
-## 👥 Integrantes
+O `vercel.json` manda todas as rotas para o `index.html`. Sem ele, recarregar a página em `/login` ou em `/area-do-estudante` dá erro 404 na Vercel.
 
-Os nomes completos e RMs estão no arquivo [`INTEGRANTES.TXT`](./INTEGRANTES.TXT).
+## Integrantes
+
+Os nomes completos e os RMs estão no arquivo [INTEGRANTES.TXT](./INTEGRANTES.TXT).
