@@ -4,7 +4,7 @@ Projeto da Sprint 04 de Front-End Design e Web Development (FIAP), feito a parti
 
 A nossa solução para a Challenge tem duas partes: o Modo Estudante, que organiza as fotos da câmera por matéria, e o Formulário Inteligente, que adapta a câmera ao perfil de quem usa. Nesta sprint adicionamos também uma Área do Estudante com login, que simula o Modo Estudante funcionando.
 
-Deploy na Vercel: _cole aqui o link depois do deploy_
+Deploy na Vercel: (ainda vai adicionar)
 
 Repositório: https://github.com/Kaue18-py/SPRINT_4_WebDev_FrontEnd
 
