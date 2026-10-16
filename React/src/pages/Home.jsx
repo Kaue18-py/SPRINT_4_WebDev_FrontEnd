@@ -5,7 +5,6 @@ import Galeria from "../Components/Galeria";
 import Equipe from "../Components/Equipes";
 import Contato from "../Components/Contato";
 
-// Rota pública "/": a landing page da Sprint 03, agora como uma página do React Router
 export default function Home() {
   return (
     <>

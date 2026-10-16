@@ -3,14 +3,11 @@ import useFetch from "./useFetch";
 import useLocalStorage from "./useLocalStorage";
 import { getFotos, getMaterias } from "../services/api";
 
-// Toda a lógica da Área do Estudante fica aqui:
-// buscar matérias e fotos na API, filtrar por matéria, pesquisar e favoritar.
-// A página AreaEstudante.jsx só recebe os dados prontos e desenha a tela.
 export default function useModoEstudante(usuarioId) {
   const materiasApi = useFetch(getMaterias);
   const fotosApi = useFetch(getFotos);
 
-  const [materiaSelecionada, setMateriaSelecionada] = useState(null); // null = todas
+  const [materiaSelecionada, setMateriaSelecionada] = useState(null);
   const [busca, setBusca] = useState("");
   const [favoritas, setFavoritas] = useLocalStorage(
     `jovi:favoritas:${usuarioId}`,
@@ -20,7 +17,6 @@ export default function useModoEstudante(usuarioId) {
   const materias = useMemo(() => materiasApi.data ?? [], [materiasApi.data]);
   const fotos = useMemo(() => fotosApi.data ?? [], [fotosApi.data]);
 
-  // Junta cada foto com os dados da matéria dela (nome, cor, ícone)
   const fotosComMateria = useMemo(() => {
     const porId = Object.fromEntries(materias.map((m) => [m.id, m]));
     return fotos
@@ -32,7 +28,6 @@ export default function useModoEstudante(usuarioId) {
       .sort((a, b) => b.data.localeCompare(a.data));
   }, [fotos, materias, favoritas]);
 
-  // Quantidade de fotos em cada matéria (para os botões de filtro)
   const contagemPorMateria = useMemo(() => {
     const contagem = {};
     fotos.forEach((f) => {

@@ -4,7 +4,6 @@ import useLocalStorage from "../hooks/useLocalStorage";
 import { login as loginApi } from "../services/api";
 
 export default function AuthProvider({ children }) {
-  // A sessão fica salva no localStorage para não deslogar ao recarregar a página
   const [usuario, setUsuario] = useLocalStorage("jovi:usuario", null);
 
   const valor = useMemo(

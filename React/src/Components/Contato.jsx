@@ -16,7 +16,6 @@ function validarContato({ nome, email, mensagem }) {
 }
 
 export default function Contato() {
-    // Toda a lógica (valores, validação e envio) fica no hook useForm
     const { valores, erros, enviando, sucesso, handleChange, handleSubmit } = useForm(
         { nome: "", email: "", mensagem: "" },
         validarContato,

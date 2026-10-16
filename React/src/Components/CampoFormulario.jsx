@@ -1,7 +1,6 @@
-// Campo de formulário reutilizável (label + input/textarea + mensagem de erro)
 export default function CampoFormulario({
   id,
-  name = id, // "name" é a chave usada no useForm; por padrão é igual ao id
+  name = id,
   label,
   erro,
   multilinha = false,

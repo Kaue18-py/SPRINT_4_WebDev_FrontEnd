@@ -1,7 +1,5 @@
 import { useCallback, useState } from "react";
 
-// Funciona como o useState, mas salva o valor no localStorage
-// para ele continuar lá mesmo depois de recarregar a página.
 export default function useLocalStorage(chave, valorInicial) {
   const [valor, setValor] = useState(() => {
     try {
@@ -24,7 +22,7 @@ export default function useLocalStorage(chave, valorInicial) {
             localStorage.setItem(chave, JSON.stringify(resolvido));
           }
         } catch {
-          // localStorage indisponível (ex.: aba anônima bloqueada): segue só em memória
+          return resolvido;
         }
         return resolvido;
       });

@@ -1,9 +1,5 @@
-// Camada de serviço: toda comunicação com a API fica aqui, separada dos componentes.
-// A API é mockada: os dados ficam em /public/api/*.json e são buscados com fetch,
-// do mesmo jeito que seria com uma API real (MockAPI, back-end próprio etc.).
-
 const BASE_URL = "/api";
-const ATRASO_SIMULADO_MS = 500; // simula o tempo de resposta de um servidor
+const ATRASO_SIMULADO_MS = 500;
 
 function esperar(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -29,8 +25,6 @@ export function getFotos(options) {
   return request("fotos", options);
 }
 
-// Autenticação mockada: busca os usuários e confere e-mail e senha.
-// Em um projeto real essa verificação seria feita no back-end.
 export async function login(email, senha) {
   const usuarios = await request("usuarios");
 
@@ -42,7 +36,6 @@ export async function login(email, senha) {
     throw new Error("E-mail ou senha inválidos.");
   }
 
-  // Nunca devolvemos a senha para o restante da aplicação
   return {
     id: usuario.id,
     nome: usuario.nome,
@@ -51,7 +44,6 @@ export async function login(email, senha) {
   };
 }
 
-// Envio do formulário de contato (simulado)
 export async function enviarMensagem(dados) {
   await esperar(ATRASO_SIMULADO_MS);
   console.log("Mensagem enviada:", dados);

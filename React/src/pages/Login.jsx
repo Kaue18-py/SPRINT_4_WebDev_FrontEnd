@@ -11,13 +11,11 @@ function validarLogin({ email, senha }) {
   return erros;
 }
 
-// Rota pública "/login"
 export default function Login() {
   const { autenticado, login } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Se veio redirecionado de uma rota privada, volta para ela depois do login
   const destino = location.state?.from?.pathname ?? "/area-do-estudante";
 
   const { valores, erros, enviando, erroEnvio, handleChange, handleSubmit } = useForm(

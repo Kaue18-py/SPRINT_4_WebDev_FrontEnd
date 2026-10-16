@@ -1,6 +1,5 @@
 import { useCallback, useState } from "react";
 
-// Liga/desliga um valor booleano (usado no menu mobile do Header)
 export default function useToggle(inicial = false) {
   const [ligado, setLigado] = useState(inicial);
 

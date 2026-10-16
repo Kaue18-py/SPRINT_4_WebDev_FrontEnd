@@ -1,7 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
 
-// Hook genérico para consumir a API.
-// Recebe uma função do services/api.js e devolve { data, loading, error, recarregar }.
 export default function useFetch(buscar) {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -23,7 +21,6 @@ export default function useFetch(buscar) {
         if (!controller.signal.aborted) setLoading(false);
       });
 
-    // Cancela a requisição se o componente sair da tela antes da resposta
     return () => controller.abort();
   }, [buscar, tentativa]);
 

@@ -14,7 +14,6 @@ function Chip({ ativo, onClick, children }) {
   );
 }
 
-// Botões para filtrar as fotos por matéria
 export default function FiltroMaterias({
   materias,
   contagem,

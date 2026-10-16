@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import Botao from "../Components/Botao";
 
-// Rota pública "*": qualquer endereço que não existe cai aqui
 export default function NotFound() {
   return (
     <section className="flex min-h-[calc(100vh-140px)] flex-col items-center justify-center px-4 py-16 text-center">

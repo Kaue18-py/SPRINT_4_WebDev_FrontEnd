@@ -1,9 +1,7 @@
 function formatarData(dataIso) {
-  // "2026-10-14" -> "14/10/2026" (sem usar Date para não mudar o dia por fuso horário)
   return dataIso.split("-").reverse().join("/");
 }
 
-// Card de uma foto da Área do Estudante. Recebe tudo por props.
 export default function FotoCard({ titulo, tipo, data, materia, favorita, onFavoritar }) {
   const cor = materia?.cor ?? "#0944b9";
 

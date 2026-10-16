@@ -1,5 +1,3 @@
-// Botão reutilizável: a aparência muda pela prop "variante"
-// e ele pode virar um <Link> do React Router com a prop "as".
 const variantes = {
   escuro: "bg-jovi-dark text-white hover:bg-jovi-hover",
   claro: "bg-white text-jovi-dark hover:bg-jovi-soft",

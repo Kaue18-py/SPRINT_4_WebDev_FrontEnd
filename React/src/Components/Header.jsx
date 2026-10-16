@@ -88,7 +88,6 @@ export default function Header() {
           </ul>
         </nav>
 
-        {/* Botão do menu mobile (fica por último para ir para o canto direito) */}
         <button
           className="cursor-pointer border-none bg-transparent text-[1.6rem] text-white lg:hidden"
           aria-label={aberto ? "Fechar menu" : "Abrir menu"}

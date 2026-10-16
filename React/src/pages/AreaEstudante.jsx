@@ -29,8 +29,6 @@ function CarregandoFotos() {
   );
 }
 
-// Rota privada "/area-do-estudante": simula o Modo Estudante do app.
-// A lógica está toda no hook useModoEstudante; aqui só tem a parte visual.
 export default function AreaEstudante() {
   const { usuario } = useAuth();
   const {

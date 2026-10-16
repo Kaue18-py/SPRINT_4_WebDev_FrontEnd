@@ -1,11 +1,5 @@
 import { useState } from "react";
 
-// Concentra toda a lógica de formulário: valores, validação, envio e erros.
-// O componente só cuida de desenhar os campos.
-//
-// valoresIniciais: { nome: "", email: "" ... }
-// validar(valores): devolve um objeto { campo: "mensagem de erro" }
-// aoEnviar(valores, { limpar }): função (pode ser async) chamada quando está tudo válido
 export default function useForm(valoresIniciais, validar, aoEnviar) {
   const [valores, setValores] = useState(valoresIniciais);
   const [erros, setErros] = useState({});

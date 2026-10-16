@@ -10,16 +10,13 @@ export default function App() {
   return (
     <Routes>
       <Route element={<Layout />}>
-        {/* Rotas públicas */}
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
 
-        {/* Rotas privadas: só entra quem está logado */}
         <Route element={<PrivateRoute />}>
           <Route path="/area-do-estudante" element={<AreaEstudante />} />
         </Route>
 
-        {/* Qualquer outro endereço */}
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
