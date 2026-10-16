@@ -1,25 +1,27 @@
-import Header from "./Components/Header";
-import Hero from "./Components/Hero";
-import Solucao from "./Components/Solucao";
-import Publico from "./Components/Publico";
-import Galeria from "./Components/Galeria";
-import Equipe from "./Components/Equipes";
-import Contato from "./Components/Contato";
-import Footer from "./Components/Footer";
+import { Route, Routes } from "react-router-dom";
+import Layout from "./Components/Layout";
+import PrivateRoute from "./Components/PrivateRoute";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import AreaEstudante from "./pages/AreaEstudante";
+import NotFound from "./pages/NotFound";
 
 export default function App() {
   return (
-    <>
-      <Header />
-      <main>
-        <Hero />
-        <Solucao />
-        <Publico />
-        <Galeria />
-        <Equipe />
-        <Contato />
-      </main>
-      <Footer />
-    </>
+    <Routes>
+      <Route element={<Layout />}>
+        {/* Rotas públicas */}
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+
+        {/* Rotas privadas: só entra quem está logado */}
+        <Route element={<PrivateRoute />}>
+          <Route path="/area-do-estudante" element={<AreaEstudante />} />
+        </Route>
+
+        {/* Qualquer outro endereço */}
+        <Route path="*" element={<NotFound />} />
+      </Route>
+    </Routes>
   );
 }

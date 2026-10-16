@@ -17,3 +17,7 @@ html {
 body {
   @apply bg-[#fafafa] text-[#222] leading-relaxed;
 }
+/* Compensa a altura do Header fixo ao rolar até uma seção (#solucao, #contato...) */
+section[id] {
+  scroll-margin-top: 72px;
+}

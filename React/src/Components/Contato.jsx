@@ -1,25 +1,30 @@
-import { useState } from "react";
 import SectionHeader from "./SectionHeader";
+import CampoFormulario from "./CampoFormulario";
+import Botao from "./Botao";
+import useForm from "../hooks/useForm";
+import { enviarMensagem } from "../services/api";
 
-const campoClasses =
-    "w-full rounded-lg border border-[#ccc] px-3 py-2.5 font-[inherit]";
-const labelClasses = "mb-1 block font-semibold";
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+function validarContato({ nome, email, mensagem }) {
+    const erros = {};
+    if (nome.trim().length < 3) erros.nome = "Digite seu nome (mínimo 3 letras).";
+    if (!EMAIL_REGEX.test(email)) erros.email = "Digite um e-mail válido.";
+    if (mensagem.trim().length < 10)
+        erros.mensagem = "A mensagem precisa ter pelo menos 10 caracteres.";
+    return erros;
+}
 
 export default function Contato() {
-    const [form, setForm] = useState({ nome: "", email: "", mensagem: "" });
-    const [enviado, setEnviado] = useState(false);
-
-    function handleChange(e) {
-        setForm({ ...form, [e.target.name]: e.target.value });
-        setEnviado(false);
-    }
-
-    function handleSubmit(e) {
-        e.preventDefault();
-        console.log("Mensagem:", form);
-        setEnviado(true);
-        setForm({ nome: "", email: "", mensagem: "" });
-    }
+    // Toda a lógica (valores, validação e envio) fica no hook useForm
+    const { valores, erros, enviando, sucesso, handleChange, handleSubmit } = useForm(
+        { nome: "", email: "", mensagem: "" },
+        validarContato,
+        async (dados, { limpar }) => {
+            await enviarMensagem(dados);
+            limpar();
+        }
+    );
 
     return (
         <section id="contato" className="px-4 py-10 md:px-5 md:py-[60px]">
@@ -30,57 +35,42 @@ export default function Contato() {
                 />
 
                 <div className="grid grid-cols-1 gap-10 lg:grid-cols-2">
-                    <form onSubmit={handleSubmit} className="grid gap-4">
-                        <div>
-                            <label htmlFor="nome" className={labelClasses}>
-                                Nome
-                            </label>
-                            <input
-                                type="text"
-                                id="nome"
-                                name="nome"
-                                placeholder="Digite seu nome"
-                                value={form.nome}
-                                onChange={handleChange}
-                                className={campoClasses}
-                            />
-                        </div>
-                        <div>
-                            <label htmlFor="email" className={labelClasses}>
-                                E-mail
-                            </label>
-                            <input
-                                type="email"
-                                id="email"
-                                name="email"
-                                placeholder="Digite seu e-mail"
-                                value={form.email}
-                                onChange={handleChange}
-                                className={campoClasses}
-                            />
-                        </div>
-                        <div>
-                            <label htmlFor="mensagem" className={labelClasses}>
-                                Mensagem
-                            </label>
-                            <textarea
-                                id="mensagem"
-                                name="mensagem"
-                                rows={5}
-                                placeholder="Escreva sua mensagem"
-                                value={form.mensagem}
-                                onChange={handleChange}
-                                className={campoClasses}
-                            />
-                        </div>
-                        <button
-                            type="submit"
-                            className="cursor-pointer rounded-lg bg-jovi-dark p-3 text-base text-white transition-colors duration-200 hover:bg-jovi-hover"
-                        >
-                            Enviar mensagem
-                        </button>
-                        {enviado && (
-                            <p className="text-sm font-medium text-green-700">
+                    <form onSubmit={handleSubmit} noValidate className="grid gap-4">
+                        <CampoFormulario
+                            id="contato-nome"
+                            name="nome"
+                            label="Nome"
+                            placeholder="Digite seu nome"
+                            value={valores.nome}
+                            onChange={handleChange}
+                            erro={erros.nome}
+                        />
+                        <CampoFormulario
+                            id="contato-email"
+                            name="email"
+                            label="E-mail"
+                            type="email"
+                            placeholder="Digite seu e-mail"
+                            value={valores.email}
+                            onChange={handleChange}
+                            erro={erros.email}
+                        />
+                        <CampoFormulario
+                            id="contato-mensagem"
+                            name="mensagem"
+                            label="Mensagem"
+                            multilinha
+                            rows={5}
+                            placeholder="Escreva sua mensagem"
+                            value={valores.mensagem}
+                            onChange={handleChange}
+                            erro={erros.mensagem}
+                        />
+                        <Botao type="submit" disabled={enviando}>
+                            {enviando ? "Enviando..." : "Enviar mensagem"}
+                        </Botao>
+                        {sucesso && (
+                            <p role="status" className="text-sm font-medium text-green-700">
                                 Mensagem enviada com sucesso!
                             </p>
                         )}

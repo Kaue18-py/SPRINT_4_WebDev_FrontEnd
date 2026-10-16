@@ -1,3 +1,6 @@
+import { Link } from "react-router-dom";
+import Botao from "./Botao";
+
 export default function Hero() {
     return (
         <section className="bg-linear-to-br from-jovi-dark to-jovi-blue px-4 py-[90px] text-center text-white md:px-5">
@@ -6,9 +9,18 @@ export default function Hero() {
                     Um Novo Modo para Um Novo Dia
                 </h1>
                 <p className="mx-auto max-w-[600px] text-[1.1rem] text-[#d0d0e0]">
-                    Um nova função de câmera e um formulário inteligente que se adapta ao
+                    Uma nova função de câmera e um formulário inteligente que se adapta ao
                     seu jeito de fotografar e organizar suas fotos.
                 </p>
+
+                <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+                    <Botao as={Link} to="/area-do-estudante" variante="claro">
+                        Testar o Modo Estudante
+                    </Botao>
+                    <Botao as={Link} to="/#solucao" variante="contorno">
+                        Conhecer a solução
+                    </Botao>
+                </div>
             </div>
         </section>
     );
