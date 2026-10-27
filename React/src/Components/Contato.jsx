@@ -7,9 +7,9 @@ import { enviarMensagem } from "../services/api";
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const canais = [
-    { rotulo: "E-mail", valor: "atendimento@fiap.com.br", href: "mailto:atendimento@fiap.com.br" },
-    { rotulo: "Instagram", valor: "@fiapoficial" },
-    { rotulo: "LinkedIn", valor: "FIAP" },
+    { rotulo: "E-mail", valor: "jovi@fiap.com.br", href: "mailto:jovi@fiap.com.br" },
+    { rotulo: "Instagram", valor: "@JoviOficial_Fiap" },
+    { rotulo: "LinkedIn", valor: "JOVI Oficial" },
 ];
 
 function validarContato({ nome, email, mensagem }) {
