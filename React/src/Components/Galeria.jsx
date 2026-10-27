@@ -1,36 +1,40 @@
-import SectionHeader from "./SectionHeader";
+import Secao from "./Secao";
+
 const telas = [
-    { src: "/imagens/Tela Inicial JOVI.jpeg", alt: "Tela inicial do app JOVI" },
-    { src: "/imagens/Foto Forms Inteligente JOVI.jpeg", alt: "Tela do formulário inteligente" },
-    { src: "/imagens/Câmera no Modo Estudante JOVI.jpeg", alt: "Tela do modo estudante" },
-    { src: "/imagens/Organização por matérias JOVI.jpeg", alt: "Tela de organização por matérias" },
-    { src: "/imagens/Novo Layout Câmera JOVI.jpeg", alt: "Tela do novo layout" },
-    { src: "/imagens/Galeria nova JOVI.jpeg", alt: "Tela da galeria de fotos" },
+    { src: "/imagens/Tela Inicial JOVI.jpeg", legenda: "Tela inicial" },
+    { src: "/imagens/Foto Forms Inteligente JOVI.jpeg", legenda: "Formulário inteligente" },
+    { src: "/imagens/Câmera no Modo Estudante JOVI.jpeg", legenda: "Câmera no Modo Estudante" },
+    { src: "/imagens/Organização por matérias JOVI.jpeg", legenda: "Organização por matérias" },
+    { src: "/imagens/Novo Layout Câmera JOVI.jpeg", legenda: "Novo layout da câmera" },
+    { src: "/imagens/Galeria nova JOVI.jpeg", legenda: "Galeria de fotos" },
 ];
+
 export default function Galeria() {
     return (
-        <section id="galeria" className="px-4 py-10 md:px-5 md:py-[60px]">
-            <div className="mx-auto max-w-[1100px]">
-                <SectionHeader
-                    title="Galeria"
-                    subtitle="Alguns mockups e telas pensadas para a solução."
-                />
-
-                <div className="grid grid-cols-1 justify-center gap-6 md:grid-cols-2 lg:grid-cols-[repeat(3,minmax(180px,240px))]">
-                    {telas.map((tela) => (
-                        <figure
-                            key={tela.src}
-                            className="aspect-[9/18] w-full max-w-60 justify-self-center overflow-hidden rounded-[18px] border-[6px] border-jovi-dark bg-[#ddd]"
-                        >
+        <Secao
+            id="galeria"
+            numero="03"
+            titulo="Galeria"
+            subtitulo="Alguns mockups e telas pensadas para a solução."
+        >
+            <div className="-mx-4 flex snap-x snap-mandatory gap-5 overflow-x-auto px-4 pb-4 md:mx-0 md:grid md:grid-cols-3 md:gap-x-6 md:gap-y-12 md:overflow-visible md:px-0 md:pb-0">
+                {telas.map((tela, i) => (
+                    <figure key={tela.src} className="w-[210px] shrink-0 snap-start md:w-auto">
+                        <div className="aspect-[9/18] overflow-hidden rounded-[22px] border-[6px] border-jovi-dark bg-jovi-dark">
                             <img
                                 src={tela.src}
-                                alt={tela.alt}
+                                alt={`Tela do app JOVI: ${tela.legenda.toLowerCase()}`}
+                                loading="lazy"
                                 className="block h-full w-full object-cover"
                             />
-                        </figure>
-                    ))}
-                </div>
+                        </div>
+                        <figcaption className="mt-3 flex gap-3 text-sm">
+                            <span className="text-jovi-muted">{String(i + 1).padStart(2, "0")}</span>
+                            <span className="font-medium">{tela.legenda}</span>
+                        </figcaption>
+                    </figure>
+                ))}
             </div>
-        </section>
+        </Secao>
     );
 }

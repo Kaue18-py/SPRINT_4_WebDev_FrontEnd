@@ -2,7 +2,7 @@
 
 Projeto da Sprint 04 de Front-End Design e Web Development (FIAP), feito a partir da landing page que entregamos na Sprint 03.
 
-A nossa solução para a Challenge tem duas partes: o Modo Estudante, que organiza as fotos da câmera por matéria, e o Formulário Inteligente, que adapta a câmera ao perfil de quem usa. Nesta sprint adicionamos também uma Área do Estudante com login, que simula o Modo Estudante funcionando.
+A nossa solução para a Challenge tem duas partes: o Modo Estudante, que organiza as fotos da câmera por matéria, e o Formulário Inteligente, que adapta a câmera ao perfil de quem usa.
 
 Deploy na Vercel: (ainda vai adicionar)
 
@@ -14,7 +14,6 @@ Repositório: https://github.com/Kaue18-py/SPRINT_4_WebDev_FrontEnd
 - Vite
 - React Router (react-router-dom)
 - Tailwind CSS 4
-- API mockada com arquivos JSON e fetch
 - ESLint
 - Git e Vercel
 
@@ -22,32 +21,26 @@ Repositório: https://github.com/Kaue18-py/SPRINT_4_WebDev_FrontEnd
 
 ### Componentes e props
 
-A página foi dividida em componentes que recebem os dados por props, como `SectionHeader`, `Botao`, `CampoFormulario`, `FotoCard` e `FiltroMaterias`.
+A página foi dividida em componentes que recebem os dados por props, como `Secao`, `Botao` e `CampoFormulario`.
 
 ### Rotas
 
-- `/` (pública): landing page com Solução, Público-Alvo, Galeria, Equipe e Contato
-- `/login` (pública): tela de login
-- `/area-do-estudante` (privada): simulação do Modo Estudante, só abre com o usuário logado
-- `*` (pública): página 404
+- `/`: landing page com Solução, Público-Alvo, Galeria, Equipe e Contato
+- `*`: página 404
 
 ### Hooks
 
-Usamos os hooks do React `useState`, `useEffect`, `useContext`, `useMemo` e `useCallback`.
+Usamos os hooks do React `useState`, `useEffect` e `useCallback`.
 
 Também criamos hooks próprios na pasta `src/hooks` para deixar a lógica separada das telas:
 
-- `useAuth`: acesso ao usuário logado, login e logout (usa Context API)
-- `useFetch`: busca os dados da API e controla carregamento, erro e o botão de tentar de novo
-- `useForm`: valores, validação e envio dos formulários de Login e Contato
-- `useModoEstudante`: lógica da Área do Estudante (busca, filtro por matéria, pesquisa e favoritos)
-- `useLocalStorage`: funciona como o `useState`, mas salva no navegador (usado na sessão e nos favoritos)
+- `useForm`: valores, validação e envio do formulário de Contato
 - `useToggle`: abre e fecha o menu no celular
 - `useScrollToHash`: rola até a seção certa quando clica nos links do menu, como `/#contato`
 
-### API
+### Envio do formulário
 
-Os dados ficam em `React/public/api/` (`usuarios.json`, `materias.json` e `fotos.json`) e são buscados com `fetch` pelo arquivo `src/services/api.js`. Colocamos um pequeno atraso nas respostas para parecer um servidor de verdade.
+O formulário de Contato é enviado pela função `enviarMensagem`, em `src/services/api.js`. Ela simula o envio com um pequeno atraso, como se fosse um servidor de verdade.
 
 ### Responsividade
 
@@ -85,25 +78,11 @@ npm run lint
 
 ## Back-end
 
-O projeto não tem back-end próprio, então não precisa subir nenhum servidor além do `npm run dev`. Os arquivos JSON da API ficam na pasta `public` e são servidos pelo próprio Vite (e pela Vercel no deploy).
-
-## Usuários para teste
-
-- E-mail: `estudante@jovi.com` / Senha: `jovi123`
-- E-mail: `professor@fiap.com.br` / Senha: `fiap2026`
-
-Para testar a rota privada:
-
-1. Acesse `/area-do-estudante` sem estar logado. O site manda para a tela de login.
-2. Entre com um dos usuários acima. Depois do login você volta para a Área do Estudante.
-3. Filtre as fotos por matéria, pesquise e marque as favoritas (elas ficam salvas no navegador).
-4. Clique em Sair no menu para sair da conta.
-
-O login é só uma simulação para o trabalho. Num sistema de verdade a senha seria conferida no back-end.
+O projeto não tem back-end próprio, então não precisa subir nenhum servidor além do `npm run dev`. O envio do formulário de Contato é só simulado no próprio front-end.
 
 ## Uso de Inteligência Artificial
 
-Usamos o Claude, da Anthropic, como apoio para passar o projeto da Sprint 03 para a Sprint 04. Ele ajudou a revisar o código que já tínhamos e comparar com os requisitos da entrega, montar as rotas públicas e privadas com React Router, criar os hooks customizados, montar a API mockada da Área do Estudante e escrever a primeira versão deste README. O grupo revisou, testou e ajustou todo o código, e a ideia da solução (Modo Estudante, Formulário Inteligente e Novo Layout) foi definida por nós.
+Usamos o Claude, da Anthropic, como apoio para passar o projeto da Sprint 03 para a Sprint 04. Ele ajudou a revisar o código que já tínhamos e comparar com os requisitos da entrega, montar as rotas com React Router, criar os hooks customizados, reestilizar o visual do site e escrever a primeira versão deste README. O grupo revisou, testou e ajustou todo o código, e a ideia da solução (Modo Estudante, Formulário Inteligente e Novo Layout) foi definida por nós.
 
 ## Estrutura de pastas
 
@@ -113,11 +92,9 @@ SPRINT_4_WebDev_FrontEnd/
 ├── README.md
 └── React/
     ├── public/
-    │   ├── api/
     │   └── imagens/
     ├── src/
     │   ├── Components/
-    │   ├── contexts/
     │   ├── hooks/
     │   ├── pages/
     │   ├── services/api.js
@@ -128,13 +105,11 @@ SPRINT_4_WebDev_FrontEnd/
     └── package.json
 ```
 
-- `public/api`: arquivos JSON da API (usuários, matérias e fotos)
 - `public/imagens`: telas do app usadas na Galeria
 - `src/Components`: componentes da página
-- `src/contexts`: contexto de login (AuthContext e AuthProvider)
 - `src/hooks`: hooks customizados
-- `src/pages`: Home, Login, AreaEstudante e NotFound
-- `src/services/api.js`: funções que buscam os dados da API
+- `src/pages`: Home e NotFound
+- `src/services/api.js`: simulação do envio do formulário de Contato
 - `src/App.jsx`: rotas do site
 - `src/index.css`: Tailwind e as cores da marca
 - `vercel.json`: configuração para as rotas funcionarem na Vercel
@@ -146,7 +121,7 @@ SPRINT_4_WebDev_FrontEnd/
 3. O Framework Preset deve ser Vite (ele detecta sozinho). O comando de build é `npm run build` e a pasta de saída é `dist`.
 4. Clique em Deploy e cole o link gerado no começo deste README.
 
-O `vercel.json` manda todas as rotas para o `index.html`. Sem ele, recarregar a página em `/login` ou em `/area-do-estudante` dá erro 404 na Vercel.
+O `vercel.json` manda todas as rotas para o `index.html`. Sem ele, recarregar a página num endereço que não seja a raiz dá erro 404 da Vercel em vez da nossa página 404.
 
 ## Integrantes
 

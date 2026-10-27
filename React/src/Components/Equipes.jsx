@@ -1,4 +1,4 @@
-import SectionHeader from "./SectionHeader";
+import Secao from "./Secao";
 
 const membros = [
     { nome: "Messias Macedo", funcao: "Idealização e Produção" },
@@ -10,33 +10,30 @@ const membros = [
 
 export default function Equipe() {
     return (
-        <section
+        <Secao
             id="equipe"
-            className="bg-[#f5f5f5] px-4 py-10 md:px-5 md:py-[60px]"
+            numero="04"
+            titulo="Nossa equipe"
+            subtitulo="Os responsáveis pelo desenvolvimento do Modo Estudante e do Formulário Inteligente."
         >
-            <div className="mx-auto max-w-[1100px]">
-                <SectionHeader
-                    title="Nossa Equipe"
-                    subtitle="Os responsáveis pelo desenvolvimento do Modo Estudante e do Formulário Inteligente."
-                />
-
-                <div className="grid grid-cols-1 gap-6 md:grid-cols-3 lg:grid-cols-5">
-                    {membros.map((membro) => (
-                        <article
-                            key={membro.nome}
-                            className="rounded-xl bg-white px-4 py-6 text-center shadow-[0_4px_12px_rgba(0,0,0,0.08)]"
-                        >
-                            <div className="mx-auto mb-3.5 flex size-[90px] items-center justify-center rounded-full bg-[#d4dcf7] text-[1.6rem] font-bold text-jovi-accent">
-                                {membro.nome[0]}
-                            </div>
-                            <h4 className="mb-1 font-semibold">{membro.nome}</h4>
-                            <div className="mb-1.5 text-[0.9rem] text-jovi-accent">
-                                {membro.funcao}
-                            </div>
-                        </article>
-                    ))}
-                </div>
-            </div>
-        </section>
+            <ul className="border-b border-jovi-line">
+                {membros.map((membro, i) => (
+                    <li
+                        key={membro.nome}
+                        className="grid grid-cols-[2.5rem_1fr] gap-x-4 border-t border-jovi-line py-5 md:grid-cols-[3rem_1fr_1fr] md:items-baseline"
+                    >
+                        <span className="text-sm text-jovi-muted">
+                            {String(i + 1).padStart(2, "0")}
+                        </span>
+                        <h3 className="font-display text-xl font-semibold tracking-tight md:text-2xl">
+                            {membro.nome}
+                        </h3>
+                        <p className="col-start-2 text-jovi-muted md:col-start-auto">
+                            {membro.funcao}
+                        </p>
+                    </li>
+                ))}
+            </ul>
+        </Secao>
     );
 }

@@ -1,8 +1,0 @@
-[
-  { "id": 1, "nome": "Matemática", "icone": "➗", "cor": "#0944b9" },
-  { "id": 2, "nome": "Física", "icone": "⚛️", "cor": "#7c3aed" },
-  { "id": 3, "nome": "Química", "icone": "🧪", "cor": "#059669" },
-  { "id": 4, "nome": "História", "icone": "🏛️", "cor": "#b45309" },
-  { "id": 5, "nome": "Programação", "icone": "💻", "cor": "#022772" },
-  { "id": 6, "nome": "Inglês", "icone": "🌎", "cor": "#be123c" }
-]
