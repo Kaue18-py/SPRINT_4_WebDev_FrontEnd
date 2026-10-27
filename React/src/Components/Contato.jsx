@@ -1,10 +1,16 @@
-import SectionHeader from "./SectionHeader";
+import Secao from "./Secao";
 import CampoFormulario from "./CampoFormulario";
 import Botao from "./Botao";
 import useForm from "../hooks/useForm";
 import { enviarMensagem } from "../services/api";
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+const canais = [
+    { rotulo: "E-mail", valor: "atendimento@fiap.com.br", href: "mailto:atendimento@fiap.com.br" },
+    { rotulo: "Instagram", valor: "@fiapoficial" },
+    { rotulo: "LinkedIn", valor: "FIAP" },
+];
 
 function validarContato({ nome, email, mensagem }) {
     const erros = {};
@@ -26,45 +32,45 @@ export default function Contato() {
     );
 
     return (
-        <section id="contato" className="px-4 py-10 md:px-5 md:py-[60px]">
-            <div className="mx-auto max-w-[1100px]">
-                <SectionHeader
-                    title="Contato"
-                    subtitle="Ficou com alguma dúvida ou quer falar com a equipe? Envie uma mensagem."
-                />
-
-                <div className="grid grid-cols-1 gap-10 lg:grid-cols-2">
-                    <form onSubmit={handleSubmit} noValidate className="grid gap-4">
-                        <CampoFormulario
-                            id="contato-nome"
-                            name="nome"
-                            label="Nome"
-                            placeholder="Digite seu nome"
-                            value={valores.nome}
-                            onChange={handleChange}
-                            erro={erros.nome}
-                        />
-                        <CampoFormulario
-                            id="contato-email"
-                            name="email"
-                            label="E-mail"
-                            type="email"
-                            placeholder="Digite seu e-mail"
-                            value={valores.email}
-                            onChange={handleChange}
-                            erro={erros.email}
-                        />
-                        <CampoFormulario
-                            id="contato-mensagem"
-                            name="mensagem"
-                            label="Mensagem"
-                            multilinha
-                            rows={5}
-                            placeholder="Escreva sua mensagem"
-                            value={valores.mensagem}
-                            onChange={handleChange}
-                            erro={erros.mensagem}
-                        />
+        <Secao
+            id="contato"
+            numero="05"
+            titulo="Contato"
+            subtitulo="Ficou com alguma dúvida ou quer falar com a equipe? Envie uma mensagem."
+        >
+            <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1.4fr_1fr]">
+                <form onSubmit={handleSubmit} noValidate className="grid gap-5">
+                    <CampoFormulario
+                        id="contato-nome"
+                        name="nome"
+                        label="Nome"
+                        placeholder="Digite seu nome"
+                        value={valores.nome}
+                        onChange={handleChange}
+                        erro={erros.nome}
+                    />
+                    <CampoFormulario
+                        id="contato-email"
+                        name="email"
+                        label="E-mail"
+                        type="email"
+                        placeholder="Digite seu e-mail"
+                        value={valores.email}
+                        onChange={handleChange}
+                        erro={erros.email}
+                    />
+                    <CampoFormulario
+                        id="contato-mensagem"
+                        name="mensagem"
+                        label="Mensagem"
+                        multilinha
+                        rows={5}
+                        placeholder="Escreva sua mensagem"
+                        value={valores.mensagem}
+                        onChange={handleChange}
+                        erro={erros.mensagem}
+                    />
+                    <div className="flex flex-wrap items-center gap-4">
                         <Botao type="submit" disabled={enviando}>
                             {enviando ? "Enviando..." : "Enviar mensagem"}
                         </Botao>
@@ -73,18 +79,31 @@ export default function Contato() {
                                 Mensagem enviada com sucesso!
                             </p>
                         )}
-                    </form>
-
-                    <div className="rounded-xl bg-jovi-soft p-[30px]">
-                        <h3 className="mb-3.5 text-xl font-bold text-[#1b1b1b]">
-                            Outras formas de contato
-                        </h3>
-                        <p className="mb-2">📧 E-mail: atendimento@fiap.com.br</p>
-                        <p className="mb-2">📷 Instagram: @fiapoficial</p>
-                        <p className="mb-2">💼 LinkedIn: FIAP</p>
                     </div>
+                </form>
+
+                <div className="border-t border-jovi-line pt-6 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0">
+                    <h3 className="mb-6 font-display text-xl font-bold tracking-tight">
+                        Outras formas de contato
+                    </h3>
+                    <dl className="grid gap-5">
+                        {canais.map((canal) => (
+                            <div key={canal.rotulo}>
+                                <dt className="text-sm text-jovi-muted">{canal.rotulo}</dt>
+                                <dd className="text-lg font-medium">
+                                    {canal.href ? (
+                                        <a href={canal.href} className="underline decoration-jovi-line underline-offset-4 transition-colors hover:text-jovi-blue hover:decoration-jovi-blue">
+                                            {canal.valor}
+                                        </a>
+                                    ) : (
+                                        canal.valor
+                                    )}
+                                </dd>
+                            </div>
+                        ))}
+                    </dl>
                 </div>
             </div>
-        </section>
+        </Secao>
     );
 }

@@ -1,37 +1,33 @@
-import SectionHeader from "./SectionHeader";
+import Secao from "./Secao";
 
 export default function Publico() {
   return (
-    <section
+    <Secao
       id="publico"
-      className="bg-jovi-soft px-4 py-10 md:px-5 md:py-[60px]"
+      numero="02"
+      titulo="Público-alvo"
+      className="bg-jovi-dark text-white"
     >
-      <div className="mx-auto max-w-[1100px]">
-        <SectionHeader title="Público-Alvo" />
+      <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1.4fr_1fr]">
+        <p className="font-display text-2xl font-semibold leading-snug md:text-[1.9rem]">
+          O Modo Estudante foi desenvolvido pensando em{" "}
+          <strong className="text-[#9db8ff]">estudantes</strong> que têm uma
+          rotina cheia de tarefas e pouco tempo disponível. Esse público precisa
+          registrar conteúdos de aula, anotações e materiais de estudo de forma
+          rápida, sem perder tempo organizando fotos depois.
+        </p>
 
-        <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2">
-          <div className="text-[1.1rem] text-[#333]">
-            <p>
-              O Modo Estudante foi desenvolvido pensando em{" "}
-              <strong>estudantes</strong> que têm uma rotina cheia de tarefas e
-              pouco tempo disponível. Esse público precisa registrar conteúdos
-              de aula, anotações e materiais de estudo de forma rápida, sem
-              perder tempo organizando fotos depois.
-            </p>
-          </div>
-
-          <div className="rounded-xl bg-white p-[30px] shadow-[0_4px_12px_rgba(0,0,0,0.08)]">
-            <h3 className="text-xl font-bold text-[#1b1b1b]">
-              Por que o Modo Estudante é relevante para eles?
-            </h3>
-            <p>
-              Porque organiza automaticamente as fotos por matéria, facilita a
-              busca de conteúdo e economiza o tempo que o estudante levaria
-              organizando tudo manualmente.
-            </p>
-          </div>
+        <div className="border-t border-white/20 pt-6 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0">
+          <h3 className="mb-3 text-lg font-bold">
+            Por que o Modo Estudante é relevante para eles?
+          </h3>
+          <p className="text-white/70">
+            Porque organiza automaticamente as fotos por matéria, facilita a
+            busca de conteúdo e economiza o tempo que o estudante levaria
+            organizando tudo manualmente.
+          </p>
         </div>
       </div>
-    </section>
+    </Secao>
   );
 }

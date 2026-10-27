@@ -10,7 +10,7 @@ export default function CampoFormulario({
 
   return (
     <div>
-      <label htmlFor={id} className="mb-1 block font-semibold">
+      <label htmlFor={id} className="mb-1.5 block text-sm font-medium">
         {label}
       </label>
       <Elemento
@@ -18,13 +18,13 @@ export default function CampoFormulario({
         name={name}
         aria-invalid={Boolean(erro)}
         aria-describedby={erro ? `${id}-erro` : undefined}
-        className={`w-full rounded-lg border bg-white px-3 py-2.5 font-[inherit] outline-none transition-colors focus:border-jovi-blue focus:ring-2 focus:ring-jovi-blue/20 ${
-          erro ? "border-red-500" : "border-[#ccc]"
+        className={`w-full rounded-md border bg-white px-3.5 py-3 font-[inherit] outline-none transition-colors placeholder:text-[#9a9aa2] focus:border-jovi-blue focus:ring-2 focus:ring-jovi-blue/15 ${
+          erro ? "border-red-600" : "border-jovi-line"
         }`}
         {...props}
       />
       {erro && (
-        <p id={`${id}-erro`} className="mt-1 text-sm text-red-600">
+        <p id={`${id}-erro`} className="mt-1 text-sm text-red-700">
           {erro}
         </p>
       )}

@@ -1,7 +1,6 @@
 const variantes = {
-  escuro: "bg-jovi-dark text-white hover:bg-jovi-hover",
-  claro: "bg-white text-jovi-dark hover:bg-jovi-soft",
-  contorno: "border border-white/70 text-white hover:bg-white/10",
+  escuro: "bg-jovi-dark text-white hover:bg-jovi-blue",
+  contorno: "border border-jovi-dark text-jovi-dark hover:bg-jovi-dark hover:text-white",
 };
 
 export default function Botao({
@@ -13,7 +12,7 @@ export default function Botao({
 }) {
   return (
     <Componente
-      className={`inline-flex cursor-pointer items-center justify-center rounded-lg px-5 py-3 text-base font-semibold transition-colors duration-200 disabled:cursor-not-allowed disabled:opacity-60 ${variantes[variante]} ${className}`}
+      className={`inline-flex cursor-pointer items-center justify-center rounded-md px-6 py-3.5 text-[0.95rem] font-semibold transition-colors duration-200 disabled:cursor-not-allowed disabled:opacity-60 ${variantes[variante]} ${className}`}
       {...props}
     >
       {children}

@@ -1,8 +1,7 @@
-import SectionHeader from "./SectionHeader";
+import Secao from "./Secao";
 
 const cards = [
   {
-    icone: "📷",
     titulo: "Formulário Inteligente",
     texto:
       "O sistema faz perguntas iniciais para entender o usuário e reorganizar a câmera automaticamente.",
@@ -14,7 +13,6 @@ const cards = [
     ],
   },
   {
-    icone: "🎓",
     titulo: "Modo Estudante",
     texto:
       "Pensado para quem usa a câmera para estudar e precisa manter tudo organizado.",
@@ -26,7 +24,6 @@ const cards = [
     ],
   },
   {
-    icone: "✨",
     titulo: "Novo Layout",
     texto:
       "Uma interface repensada para deixar a experiência mais moderna e fácil de usar.",
@@ -39,18 +36,15 @@ const cards = [
   },
 ];
 
-function Card({ icone, titulo, texto, itens }) {
+function Card({ numero, titulo, texto, itens }) {
   return (
-    <article className="rounded-xl bg-white px-6 py-[30px] text-center shadow-[0_4px_12px_rgba(0,0,0,0.08)]">
-      <div className="mb-3 text-[2.2rem]">{icone}</div>
-      <h3 className="mb-3 text-xl font-bold text-[#1b1b1b]">{titulo}</h3>
-      <p>{texto}</p>
-      <ul className="mt-2.5 text-left">
+    <article className="py-8 first:pt-0 lg:px-8 lg:py-0 lg:first:pl-0 lg:last:pr-0">
+      <span className="font-display text-sm font-semibold text-jovi-blue">{numero}</span>
+      <h3 className="mb-3 mt-2 font-display text-2xl font-bold tracking-tight">{titulo}</h3>
+      <p className="text-jovi-muted">{texto}</p>
+      <ul className="mt-6">
         {itens.map((item) => (
-          <li
-            key={item}
-            className="py-1 text-[#444] before:font-bold before:text-jovi-accent before:content-['✓_']"
-          >
+          <li key={item} className="border-t border-jovi-line py-2.5 text-[0.95rem]">
             {item}
           </li>
         ))}
@@ -61,19 +55,17 @@ function Card({ icone, titulo, texto, itens }) {
 
 export default function Solucao() {
   return (
-    <section id="solucao" className="px-4 py-10 md:px-5 md:py-[60px]">
-      <div className="mx-auto max-w-[1100px]">
-        <SectionHeader
-          title="A Solução"
-          subtitle="A solução criada tem a função de resolver um problema comum: a dificuldade de organizar fotos e encontrar um modo de câmera adequado para cada tipo de uso. Nossa solução une um Formulário Inteligente, um modo dedicado para estudantes e um layout mais simples de usar."
-        />
-
-        <div className="mt-5 grid grid-cols-1 gap-[30px] md:grid-cols-2 lg:grid-cols-3">
-          {cards.map((card) => (
-            <Card key={card.titulo} {...card} />
-          ))}
-        </div>
+    <Secao
+      id="solucao"
+      numero="01"
+      titulo="A solução"
+      subtitulo="A solução criada tem a função de resolver um problema comum: a dificuldade de organizar fotos e encontrar um modo de câmera adequado para cada tipo de uso. Nossa solução une um Formulário Inteligente, um modo dedicado para estudantes e um layout mais simples de usar."
+    >
+      <div className="grid grid-cols-1 divide-y divide-jovi-line lg:grid-cols-3 lg:divide-x lg:divide-y-0">
+        {cards.map((card, i) => (
+          <Card key={card.titulo} numero={String(i + 1).padStart(2, "0")} {...card} />
+        ))}
       </div>
-    </section>
+    </Secao>
   );
 }
